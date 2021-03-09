@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name='viewport' content="width=device-width, initial-scale=1">
+<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+<title>Amicable Numbers</title>
+<style type ="text/css">
+	
+	html {background-color: #dfdfe5; font-family:"Gill Sans", Helvetica, Arial, "sans-serif"; text-align: center;}
+
+	form {margin-top: 10px; text-align: center; border: 2px solid #000; max-width: 300px; margin-left: auto; margin-right: auto; padding: 5px;}
+	form input {margin: 5px;}
+	div {margin-top: 20px;}
+	h1 {margin: 30px;}
+
+</style>
+</head>
+
+<body>
+
+	<h1>Amicable Number Checker</h1>
+	<form>
+		Number One <input type="text" id="number1"><br />
+		Number Two <input type="text" id="number2"><br />
+		<input type="button" value="Check Amicable" onclick="CheckAmicable()">
+
+	</form>
+
+	<div id="result"></div>
+
+	<script language="javascript">
+
+		function CheckAmicable()
+		{
+
+			var numberOne = document.getElementById("number1").value;
+			var numberTwo = document.getElementById("number2").value;
+
+			var sum1 = 0, sum2 = 0;
+
+			var array1 = [];
+			sum1 = sumFactors(array1, sum1, numberOne);
+
+			var array2 = [];
+			sum2 = sumFactors(array2, sum2, numberTwo);
+
+			alert("The factors of " + numberOne + " are: " + array1 + "\n" + "The factors of " + numberTwo + " are: " + array2);
+
+			printAmicable(sum1, sum2, numberOne, numberTwo);
+
+		}
+
+		function printAmicable(sum1, sum2, numberOne, numberTwo)
+		{
+			if ((sum1 == numberTwo) && (sum2 == numberOne)) {
+				document.getElementById("result").innerHTML = "The numbers: " + numberOne + " and " + numberTwo + " are amicable";
+			} else {
+				document.getElementById("result").innerHTML = "The numbers: " + numberOne + " and " + numberTwo + " are not amicable";
+			}
+		}
+
+		function isFactor(array, factor, number)
+		{
+			if (number % factor == 0) {
+
+				array.push(factor);
+				return factor;
+			}
+			return 0;
+		}
+
+		function sumFactors(array, sum, number)
+		{
+			for (var i = 0; i < number; i++) {
+				sum += isFactor(array, i, number);
+			}
+			return sum;
+		}
+
+
+	</script>
+
+
+
+
+
+</body>
+</html>
